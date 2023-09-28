@@ -17,11 +17,6 @@ public class PatternManager : MonoBehaviour
     
     bool isEnd = false;
     Patterns Patterns = new Patterns();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,11 +31,10 @@ public class PatternManager : MonoBehaviour
         {
             curPattern = Random.Range(0, 8);
             isDodge = Random.Range(0, 2);
-            patternTime = 3;
+            patternTime = 3f;
             isEnd = false;
-            Debug.Log("Current Pattern is" + curPattern);
-            Debug.Log("isDodge is" + isDodge);
-
+            //Debug.Log("Current Pattern is" + curPattern);
+            //Debug.Log("isDodge is" + isDodge);
         }
         else
         {
@@ -64,7 +58,6 @@ public class PatternManager : MonoBehaviour
                     Patterns.SetcurCombo(++curCombo);
                     //Debug.Log("Current Combo is " + curCombo);
                     //Debug.Log("GetCurrentCombo is " + Patterns.GetcurCombo());
-                    
                 }
                 else
                 {
@@ -78,6 +71,7 @@ public class PatternManager : MonoBehaviour
                         Patterns.PatternDodge();
                     }
                     isEnd = true;
+                    Patterns.InitPos();
                     //if (patternTimer >= patternTime * 3)
                     //{
                     //    patternTimer = 0;

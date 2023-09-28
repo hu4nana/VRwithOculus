@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Patterns : MonoBehaviour
 {
-    // 왼쪽과 오른쪽 미트 오브젝트
+    public Text TxtCombo;
+
+    public Transform[] AttackPos = new Transform[5];
     public GameObject LM;
     public GameObject RM;
 
-    
+
+    bool RightCol;
+    bool LeftCol;
+
     int curCombo;
     int maxCombo;
 
@@ -16,8 +23,6 @@ public class Patterns : MonoBehaviour
     public void SetcurCombo(int value) { curCombo = value;}
     public int GetmaxCombo() { return maxCombo;}
     public void SetmaxCombo(int value) { maxCombo = value;}
-
-
 
     // 패턴 데이터
     public void PatternData(int value)
@@ -70,17 +75,20 @@ public class Patterns : MonoBehaviour
                 }
                 break;
             case 3:
-                maxCombo = 3;
+                maxCombo = 4;
                 switch (curCombo)
                 {
                     case 0:
                         PatternJap();
                         break;
                     case 1:
-                        PatternJap();
+                        PatternStraight();
                         break;
                     case 2:
-                        PatternStraight();
+                        PatternLeft();
+                        break;
+                    case 3:
+                        PatternRight();
                         break;
                 }
                 break;
@@ -95,12 +103,12 @@ public class Patterns : MonoBehaviour
                         PatternStraight();
                         break;
                     case 2:
-                        PatternLeadHook();
+                        PatternLeft();
                         break;
                 }
                 break;
             case 5:
-                maxCombo = 4;
+                maxCombo = 5;
                 switch (curCombo)
                 {
                     case 0:
@@ -110,10 +118,13 @@ public class Patterns : MonoBehaviour
                         PatternStraight();
                         break;
                     case 2:
-                        PatternLeadHook();
+                        PatternLeft();
                         break;
                     case 3:
-                        PatternLearHook();
+                        PatternRight();
+                        break;
+                    case 4:
+                        PatternLeftUpper();
                         break;
                 }
                 break;
@@ -128,7 +139,7 @@ public class Patterns : MonoBehaviour
                         PatternStraight();
                         break;
                     case 2:
-                        PatternLeadUpper();
+                        PatternLeftUpper();
                         break;
                 }
                 break;
@@ -143,47 +154,79 @@ public class Patterns : MonoBehaviour
                         PatternStraight();
                         break;
                     case 2:
-                        PatternBothHook();
+                        PatternLeft();
+                        PatternRight();
                         break;
                     case 3:
-                        PatternBothUpper();
+                        PatternRightUpper();
+                        PatternLeftUpper();
                         break;
                 }
                 break;
         }
     }
+    public void InitPos()
+    {
+        GameObject.Find("RightMitt").transform.DOMove(new Vector3(-3.8f, 0, 3.7f), 0);
+        GameObject.Find("RightMitt").transform.DORotate(Vector3.zero, 0);
 
-    //=========================해당 액션의 미트 위치 작성================
+        GameObject.Find("LeftMitt").transform.DOMove(new Vector3(4, 0, 3.7f), 0);
+        GameObject.Find("LeftMitt").transform.DORotate(Vector3.zero, 0);
+    }
     public void PatternJap()
     {
         Debug.Log("Jap");
+        GameObject.Find("LeftMitt").transform.DOMove(GameObject.Find("Jap").transform.position, 0.3f);
+        GameObject.Find("LeftMitt").transform.DORotate(new Vector3(-11.19f, 15.83f, 0), 0);
+        InitPos();
     }
     public void PatternStraight()
     {
         Debug.Log("Straight");
+        GameObject.Find("RightMitt").transform.DOMove(GameObject.Find("Straight").transform.position, 0.3f);
+        GameObject.Find("LeftMitt").transform.DORotate(new Vector3(-9.98f, -26.2f, 0), 0);
+        InitPos();
     }
-    public void PatternLeadHook()
+    public void PatternLeft()
     {
-        Debug.Log("LeadHook");
+        Debug.Log("Left");
+        GameObject.Find("LeftMitt").transform.DOMove(GameObject.Find("Left").transform.position, 0.3f);
+        GameObject.Find("LeftMitt").transform.DORotate(new Vector3(0, 90, 0), 0.3f);
+        InitPos();
     }
-    public void PatternLearHook()
+    public void PatternRight()
     {
-        Debug.Log("LearHook");
+        Debug.Log("Right");
+        GameObject.Find("RightMitt").transform.DOMove(GameObject.Find("Right").transform.position, 0.3f);
+        GameObject.Find("RightMitt").transform.DORotate(new Vector3(0, -90, 0), 0.3f);
+        InitPos();
     }
-    public void PatternLeadUpper()
+    public void PatternRightUpper()
     {
         Debug.Log("LeadUpper");
+        GameObject.Find("RightMitt").transform.DOMove(GameObject.Find("LeftUpper").transform.position, 0.3f);
+        GameObject.Find("RightMitt").transform.DORotate(new Vector3(-67.064f, -51.705f, 30.048f), 0.3f);
     }
-    public void PatternBothHook()
+    public void PatternLeftUpper()
     {
-        Debug.Log("BothHook");
-    }
-    public void PatternBothUpper()
-    {
-        Debug.Log("BothUpper");
+        Debug.Log("LeadUpper");
+        GameObject.Find("LeftMitt").transform.DOMove(GameObject.Find("RightUpper").transform.position, 0.3f);
+        GameObject.Find("LeftMitt").transform.DORotate(new Vector3(-69.634f, 52.088f, -45.579f), 0.3f);
     }
     public void PatternDodge()
     {
         Debug.Log("Dodge");
+        int DodgeNum = Random.Range(0,2);
+
+        if (DodgeNum == 1)
+        {
+            GameObject.Find("LeftMitt").transform.DOMove(GameObject.Find("Dodge2").transform.position, 0.3f);
+            GameObject.Find("LeftMitt").transform.DORotate(new Vector3(90, 0, 0), 0.3f);
+        }
+        else
+        {
+            GameObject.Find("RightMitt").transform.DOMove(GameObject.Find("Dodge1").transform.position, 0.3f);
+            GameObject.Find("RightMitt").transform.DORotate(new Vector3(90, 0, 0), 0.3f);
+        }
     }
 }
