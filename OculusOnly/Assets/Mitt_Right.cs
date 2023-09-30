@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Meet_Right : MeetObject
+public class Mitt_Right : MeetObject
 {
+    public GameObject Righthand;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,13 @@ public class Meet_Right : MeetObject
     void Update()
     {
         Test();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == Righthand.gameObject)
+        {
+            Debug.Log("Right");
+        }
     }
 }
