@@ -17,11 +17,11 @@ public class Mitt_Right : MeetObject
         Test();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (collision.gameObject == Righthand.gameObject)
+        if (other.gameObject.CompareTag("RightHand"))
         {
-            Debug.Log("Right");
+            Debug.Log("Right!!!!!!");
         }
     }
 }

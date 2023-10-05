@@ -17,11 +17,12 @@ public class Mitt_Left : MeetObject
         Test();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (collision.gameObject == Lefthand.gameObject)
+
+        if (other.gameObject.CompareTag("LeftHand"))
         {
-            Debug.Log("Left");
+            Debug.Log("Left!!!!!!");
         }
     }
 }
