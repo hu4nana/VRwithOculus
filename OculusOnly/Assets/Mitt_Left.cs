@@ -14,7 +14,7 @@ public class Mitt_Left : MeetObject
     // Update is called once per frame
     void Update()
     {
-        Test();
+        //Test();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -23,6 +23,7 @@ public class Mitt_Left : MeetObject
         if (other.gameObject.CompareTag("LeftHand"))
         {
             Debug.Log("Left!!!!!!");
+            base.SetCollision(true);
         }
     }
 }
