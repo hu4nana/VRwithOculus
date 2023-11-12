@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
             {
                 score += target[i].GetScore();
                 target[i].SetIsScored(true);
-                target[i].TargetDeActivation();
             }
         }
     }
@@ -63,11 +62,14 @@ public class GameManager : MonoBehaviour
     }
     void TargetsActivation()
     {
-        foreach(int i in number)
+        for(int i=0; i<number.Count-1; i++)
         {
             target[i].SetIsHit(false);
+            target[i].SetType(Type.Target);
             target[i].SetIsScored(false);
             target[i].TargetActivation();
         }
+        target[number.Count-1].SetType(Type.Attack);
+        target[number.Count - 1].TargetActivation();
     }
 }
