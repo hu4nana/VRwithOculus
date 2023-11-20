@@ -305,6 +305,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 1
   isHit: 0
+  type: 0
+  bullet: {fileID: 6386242512887161654, guid: 94cc07a371b24f948adaf1781a492797, type: 3}
+  atkTime: 0
+  atkTimer: 4
 --- !u!65 &7493522134892308626
 BoxCollider:
   m_ObjectHideFlags: 0
