@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+
         //// 한 Round의 시작 및 끝을 정해야 함
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
         //    }
         //}
     }
-    
+
     // 무작위 Node를 활성화하는 함수
     void SetAGame()
     {
