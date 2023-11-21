@@ -71,10 +71,10 @@ namespace Oculus.Interaction.Editor
             ObjectFactory.componentWasAdded += handleComponentWasAdded;
             AssemblyReloadEvents.beforeAssemblyReload += handleBeforeAssemblyReload;
 
-            /*for (int idx = 0; idx < SceneManager.loadedSceneCount; ++idx)
+            for (int idx = 0; idx < EditorSceneManager.loadedSceneCount; ++idx)
             {
                 handleSceneOpened(EditorSceneManager.GetSceneAt(idx), OpenSceneMode.Additive);
-            }*/
+            }
         }
 
         private static void HandleSceneOpened(Scene scene, OpenSceneMode mode, HashSet<int> knownIds)
@@ -145,6 +145,17 @@ namespace Oculus.Interaction.Editor
 
             StartUndoGroup();
             UnityObjectAddedBroadcaster.WhenComponentAdded(component);
+            EndUndoGroup();
+        }
+
+        public static void HandleObjectWasAdded(GameObject gameObject)
+        {
+            StartUndoGroup();
+            var addedComponents = gameObject.GetComponentsInChildren<Component>(true);
+            foreach (var component in addedComponents)
+            {
+                UnityObjectAddedBroadcaster.WhenComponentAdded(component);
+            }
             EndUndoGroup();
         }
 
