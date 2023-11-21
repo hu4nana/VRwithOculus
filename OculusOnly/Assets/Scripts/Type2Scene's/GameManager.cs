@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour
     // 뽑은 숫자 저장
     List<int> number = new List<int> ();
     public GameObject cube;
+
+
+    ///////////////////////
+    int ballCount = 5;
+    public GameObject ballPrefab;
+
+
     private void Awake()
     {
         for (int i = 0; i < matrix.Count; i++)
@@ -25,6 +32,13 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (ballCount < 5)
+        {
+            float x = Random.Range(-0.2f, 3);
+            float z = Random.Range(-2.8f, -4.2f);
+            Instantiate(ballPrefab, new Vector3(x, 1, z),Quaternion.identity);
+        }
+
 
         //// 한 Round의 시작 및 끝을 정해야 함
         if (Input.GetKeyDown(KeyCode.X))
@@ -36,9 +50,8 @@ public class GameManager : MonoBehaviour
                 Input.mousePosition.y, -Camera.main.transform.position.z));
         if (Input.GetMouseButtonDown(0))
         {
-
             Debug.Log(point.ToString());
-            Instantiate(cube,new Vector3(point.x,point.y,point.z-4),Quaternion.identity);
+            //Instantiate(cube,new Vector3(point.x,point.y,point.z-4),Quaternion.identity);
         }
 
         // Target속성의 Node의 판정을 확인함
@@ -75,6 +88,16 @@ public class GameManager : MonoBehaviour
         //    }
         //}
     }
+
+
+
+
+
+
+
+
+
+
 
     // 무작위 Node를 활성화하는 함수
     void SetAGame()

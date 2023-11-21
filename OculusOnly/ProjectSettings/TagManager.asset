@@ -8,6 +8,7 @@ TagManager:
   - SamplesInfoPanel
   - RightHand
   - LeftHand
+  - Ball
   layers:
   - Default
   - TransparentFX
