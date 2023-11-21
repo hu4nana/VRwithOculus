@@ -25,15 +25,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (OVRInput.GetDown(primaryButton))
+        if (OVRInput.GetDown(primaryButton))
         {
-            
+            print("¹öÆ° ´­·¶´Ù");
         }
 
         if (OVRInput.GetUp(primaryButton))
         {
-            
-        }*/
+            print("¹öÆ° ¶Ã´Ù");
+        }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             GameObject ball = Instantiate(ballPrefab, spawnPoint.position, Quaternion.identity);
