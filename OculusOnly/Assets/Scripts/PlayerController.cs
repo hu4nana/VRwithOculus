@@ -10,11 +10,6 @@ public class PlayerController : MonoBehaviour
     public GameObject ballPrefab;
     public Transform spawnPoint;
     public float Speed = 10f;
-
-    public List<GameObject> FoundObjects;
-    public GameObject enemy;
-    public float Dis = 10;
-    public float shortDis;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +18,8 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {// PrimaryIndexTrigger 왼손 트리거 버튼
+    {
+        // PrimaryIndexTrigger 왼손 트리거 버튼
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
         {
             Debug.Log(" 왼쪽 Grip Button Down");
