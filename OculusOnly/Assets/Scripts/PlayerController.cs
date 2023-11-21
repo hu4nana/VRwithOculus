@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using OVR;
 public class PlayerController : MonoBehaviour
 {
-    private OVRInput.Button primaryButton = OVRInput.Button.PrimaryIndexTrigger;
-
     GameObject HasBall;
 
     public GameObject ballPrefab;
@@ -24,15 +23,14 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (OVRInput.GetDown(primaryButton))
+    {// PrimaryIndexTrigger 왼손 트리거 버튼
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
         {
-            print("버튼 눌렀다");
+            Debug.Log(" 왼쪽 Grip Button Down");
         }
-
-        if (OVRInput.GetUp(primaryButton))
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.RTouch))
         {
-            print("버튼 뗐다");
+            Debug.Log(" 오른쪽 Grip Button Up");
         }
 
 
