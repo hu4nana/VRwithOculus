@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log(" ¿À¸¥ÂÊ Grip Button Up");
         }
 
-
         if (Input.GetMouseButtonDown(0))
         {
             GameObject ball = Instantiate(ballPrefab, spawnPoint.position, Quaternion.identity);

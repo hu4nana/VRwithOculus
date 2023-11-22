@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,11 +14,11 @@ public class GameManager : MonoBehaviour
     int drawCount = 0;
     // 뽑은 숫자 저장
     List<int> number = new List<int> ();
-    public GameObject cube;
-
-
+    public Text scoreText;
+    public Button gameStart;
     ///////////////////////
-    int ballCount = 5;
+    [HideInInspector]
+    public int ballCount = 5;
     public GameObject ballPrefab;
 
 
@@ -65,6 +66,8 @@ public class GameManager : MonoBehaviour
                 target[i].SetIsScored(true);
             }
         }
+
+        scoreText.text = "Score : " + score;
         //for (int i = 0; i < 4; i++)
         //{
         //    for (int j = 0; j < 4; j++)
@@ -133,5 +136,11 @@ public class GameManager : MonoBehaviour
         }
         //target[number[number.Count-1].SetType(Type.Attack);
         //target[number[number.Count - 1].TargetActivation();
+    }
+
+    public void Oncclick()
+    {
+        SetAGame();
+        gameStart.gameObject.SetActive(false);
     }
 }
